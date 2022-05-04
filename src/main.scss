@@ -1,4 +1,10 @@
 @import './scss/scaffolding.scss';
 @import './scss/variables.scss';
 @import './scss/visually-hidden.scss';
+@import './scss/mixins.scss';
+@import './scss/fonts.scss';
 
+@import './components/presentation/container/container.scss';
+@import './components/presentation/sort/sort.scss';
+@import './components/presentation/user-profile/user-profile.scss';
+@import './components/presentation/button/button.scss';

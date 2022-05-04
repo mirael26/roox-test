@@ -1,0 +1,18 @@
+.button {
+  @include button-text;
+  padding: 5px 15px;
+  color: white;
+  border-radius: 5px;
+
+  &--blue {
+    background-color: $blue;
+  }
+
+  &--green {
+    background-color: $green;
+  }
+
+  :disabled {
+    background-color: $disabled;
+  }
+}

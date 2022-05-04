@@ -3,6 +3,7 @@ import * as React from "react";
 import { User } from "../../../type";
 import { getUsers } from "../../../api";
 
+import Container from "../../presentation/container/container";
 import Sort from "../../presentation/sort/sort";
 import UsersList from "../../presentation/users-list/users-list";
 import UserProfileContainer from "../user-profile-container/user-profile-container";
@@ -37,17 +38,19 @@ class UsersContainer extends React.PureComponent<UsersContainerProps, UsersConta
   render():JSX.Element {
     const {mode} = this.props;
     return (
-      <div>
-        <Sort></Sort>
-        {mode === 'list'
-          ? <UsersList />
-          : null
-        }
-        {mode === 'profile'
-          ? <UserProfileContainer />
-          : null
-        }
-      </div>
+      <React.Fragment>
+        <Container>
+          <Sort></Sort>
+          {mode === 'list'
+            ? <UsersList />
+            : null
+          }
+          {mode === 'profile'
+            ? <UserProfileContainer />
+            : null
+          }
+        </Container>
+      </React.Fragment>
     );
   }
 };
