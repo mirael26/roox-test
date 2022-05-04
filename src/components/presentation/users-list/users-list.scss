@@ -1,0 +1,44 @@
+.users-list {
+  flex-grow: 1;
+  padding: 19px 62px 0 34px;
+  background-color: #fff;
+}
+
+.users-list__header {
+  @include h1;
+  margin-bottom: 17px;
+}
+
+.users-list__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-list__item {
+  position: relative;
+  padding: 9px 10px 0;
+  margin-bottom: 14px;
+  background: $light-grey;
+  border-radius: 8px;
+}
+
+.users-list__characteristic {
+  margin-bottom: 5px;
+}
+
+.users-list__title {
+  @include hint-text;
+  margin-right: 7px;
+}
+
+.users-list__text {
+  @include user-text;
+  display: inline-block;
+}
+
+.users-list__link {
+  @include link-text;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
