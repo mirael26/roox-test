@@ -1,15 +1,15 @@
 import * as React from "react";
-import {Routes, Route, Navigate, BrowserRouter} from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
-import Test from "../../presentation/test/test";
+import UsersContainer from "../users-container/users-container";
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Navigate replace to='/userlist' />} />
-        <Route path='/userlist' element={<Test />} />
-        {/* <Route path='/profile' element={} /> */}
+        <Route path='/userlist' element={<UsersContainer mode={'list'} />} />
+        <Route path='/profile' element={<UsersContainer mode={'profile'} />} />
       </Routes>      
     </BrowserRouter>
   );
