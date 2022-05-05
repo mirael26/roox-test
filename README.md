@@ -1,2 +1,6 @@
 # roox-test
-Test for RooX Solutions
+Тестовое задание для RooX Solutions
+
+Запуск:
+- npm i
+- npm start
