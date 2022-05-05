@@ -10,12 +10,13 @@ import UsersList from "../../presentation/users-list/users-list";
 import UserProfileContainer from "../user-profile-container/user-profile-container";
 
 interface UsersContainerProps {
-  mode: 'list' | 'profile',
+  mode: 'list' | 'profile'
 }
 
 interface UsersContainerState {
   sort: SortType,
   users: User[] | null,
+  isLoading: boolean
 }
 
 class UsersContainer extends React.PureComponent<UsersContainerProps, UsersContainerState> {
@@ -24,7 +25,8 @@ class UsersContainer extends React.PureComponent<UsersContainerProps, UsersConta
 
     this.state = {
       sort: 'city',
-      users: null
+      users: null,
+      isLoading: true,
     }
 
     this.changeSortType = this.changeSortType.bind(this);
@@ -33,9 +35,8 @@ class UsersContainer extends React.PureComponent<UsersContainerProps, UsersConta
   async componentDidMount(): Promise<void> {
     await getUsers()
       .then((data) => {
-        this.setState({users: data as User[]});
+        this.setState({users: data as User[], isLoading: false});
       });
-    // TODO: сообщение об ошибке загрузки данных
   }
 
   changeSortType(sortType: SortType): void {
@@ -55,13 +56,13 @@ class UsersContainer extends React.PureComponent<UsersContainerProps, UsersConta
 
   render():JSX.Element {
     const {mode} = this.props;
-    const {users} = this.state;
+    const {users, isLoading} = this.state;
     const sortedUsers = users ? this.sortUsers(users).slice(0,10) : null;
     return (
       <Container>
         <Sort changeSortType={this.changeSortType}></Sort>
         {mode === 'list'
-          ? <UsersList users={sortedUsers}/>
+          ? <UsersList users={sortedUsers} isLoading={isLoading}/>
           : null
         }
         {mode === 'profile'

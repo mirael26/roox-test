@@ -1,4 +1,6 @@
 .users-list {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   padding: 19px 62px 0 34px;
   background-color: #fff;
@@ -7,6 +9,11 @@
 .users-list__header {
   @include h1;
   margin-bottom: 17px;
+}
+
+.users-list__throbber {
+  width: 80px;
+  margin: 20px auto;
 }
 
 .users-list__list {
