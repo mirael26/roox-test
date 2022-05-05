@@ -23,3 +23,13 @@ export interface User {
 }
 
 export type SortType = 'city' | 'company';
+
+export interface ProfileProperty {
+  id: string,
+  name: string,
+  label: string,
+  value: string,
+  isValid: boolean,
+  isRequired: boolean,
+  isReadonly: boolean,
+};

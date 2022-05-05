@@ -1,0 +1,33 @@
+.user-profile {
+  position: relative;
+  flex-grow: 1;
+  padding: 19px 41px 0 34px;
+  background-color: #fff;
+}
+
+.user-profile__header {
+  @include h1;
+  margin-bottom: 17px;
+}
+
+.user-profile__edit-button {
+  position: absolute;
+  top: 13px;
+  right: 45px;
+}
+
+.user-profile__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile__inputs-wrapper {
+  margin-bottom: 10px;
+  padding: 20px 12px 9px;
+  border: 1px solid #F3F3F3;
+  border-radius: 8px;
+}
+
+.user-profile__submit-button {
+  margin-left: auto;
+}

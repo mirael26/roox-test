@@ -1,0 +1,30 @@
+.profile-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.profile-input__label {
+  @include label-text;
+  margin-bottom: 3px;
+}
+
+.profile-input__input {
+  @include input-text;
+  width: 211px;
+  padding: 5px 10px;
+  border: 1px solid #D8D8D8;
+  border-radius: 5px;
+
+  &--textarea {
+    width: 100%;
+  }
+
+  &--invalid {
+    border: 1px solid #D91313;
+  }
+
+  &:read-only {
+    @include readonly-text;
+  }
+}
