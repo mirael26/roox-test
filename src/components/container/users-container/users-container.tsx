@@ -57,7 +57,7 @@ class UsersContainer extends React.PureComponent<UsersContainerProps, UsersConta
   render():JSX.Element {
     const {mode} = this.props;
     const {users, isLoading} = this.state;
-    const sortedUsers = users ? this.sortUsers(users).slice(0,10) : null;
+    const sortedUsers = users ? this.sortUsers(users) : null;
     return (
       <Container>
         <Sort changeSortType={this.changeSortType}></Sort>
