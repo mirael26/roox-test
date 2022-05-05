@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface ContainerProps {
-  children: JSX.Element | JSX.Element[],
+  children: React.ReactNode,
 }
 
 const Container = ({children}: ContainerProps) => {

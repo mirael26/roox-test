@@ -20,7 +20,6 @@ const UsersList = ({users}: UsersListProps): JSX.Element => {
               <div className="users-list__characteristic">
                 <span className="users-list__title">ФИО:</span>
                 <p className="users-list__text">{user.name}</p>
-                <Link className="users-list__link" to="/profile" state={{ user: user}}>Подробнее</Link>
               </div>
               <div className="users-list__characteristic">
                 <span className="users-list__title">город:</span>
@@ -30,6 +29,7 @@ const UsersList = ({users}: UsersListProps): JSX.Element => {
                 <span className="users-list__title">компания:</span>
                 <p className="users-list__text">{user.company.name}</p>
               </div>
+              <Link className="users-list__link" to="/profile" state={{ user: user }}>Подробнее</Link>
             </li>
           })}
         </ul>

@@ -58,19 +58,17 @@ class UsersContainer extends React.PureComponent<UsersContainerProps, UsersConta
     const {users} = this.state;
     const sortedUsers = users ? this.sortUsers(users).slice(0,10) : null;
     return (
-      <React.Fragment>
-        <Container>
-          <Sort changeSortType={this.changeSortType}></Sort>
-          {mode === 'list'
-            ? <UsersList users={sortedUsers}/>
-            : null
-          }
-          {mode === 'profile'
-            ? <UserProfileContainer />
-            : null
-          }
-        </Container>
-      </React.Fragment>
+      <Container>
+        <Sort changeSortType={this.changeSortType}></Sort>
+        {mode === 'list'
+          ? <UsersList users={sortedUsers}/>
+          : null
+        }
+        {mode === 'profile'
+          ? <UserProfileContainer />
+          : null
+        }
+      </Container>
     );
   }
 };
