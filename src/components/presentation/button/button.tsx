@@ -1,17 +1,20 @@
 import * as React from "react";
 
-import { SortType } from "../../../type";
-
 interface ButtonProps {
   color: 'blue' | 'green',
   text: string,
   type?: string,
-  clickHandler?(): void
+  clickHandler?(): void,
+  disabled?: boolean
 }
 
-const Button = ({color, text, clickHandler}: ButtonProps):JSX.Element => {
+const Button = ({color, text, clickHandler, disabled}: ButtonProps):JSX.Element => {
   return(
-    <button className={`button button--${color}`} onClick={clickHandler}>{text}</button>
+    <button
+      className={`button button--${color}`}
+      onClick={clickHandler}
+      disabled={disabled}>{text}
+    </button>
   );
 };
 

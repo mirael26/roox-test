@@ -11,8 +11,8 @@
   &--green {
     background-color: $green;
   }
-
-  :disabled {
+  
+  &:disabled {
     background-color: $disabled;
   }
 }
