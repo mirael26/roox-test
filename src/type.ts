@@ -24,7 +24,7 @@ export interface User {
 
 export type SortType = 'city' | 'company';
 
-export interface ProfileProperty {
+export interface ProfileInputProperty {
   id: string,
   name: string,
   label: string,
@@ -32,4 +32,16 @@ export interface ProfileProperty {
   isValid: boolean,
   isRequired: boolean,
   isReadonly: boolean,
+};
+
+export interface FormProperties {
+  name: string,
+  userName: string,
+  email: string,
+  street: string,
+  city: string,
+  zipcode: string,
+  phone: string,
+  website: string,
+  comment: string,
 };

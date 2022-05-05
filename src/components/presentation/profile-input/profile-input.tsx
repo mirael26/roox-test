@@ -1,8 +1,8 @@
 import * as React from "react";
-import { ProfileProperty } from "../../../type";
+import { ProfileInputProperty } from "../../../type";
 
 interface ProfileInputProps {
-  data: ProfileProperty,
+  data: ProfileInputProperty,
   onChange(name: string, value: string, isRequired: boolean): void
 }
 
@@ -16,8 +16,6 @@ const ProfileInput = ({data, onChange}: ProfileInputProps):JSX.Element => {
     isRequired,
     isReadonly
   } = data;
-
-  console.log(value);
 
   return (
     <div className="profile-input">

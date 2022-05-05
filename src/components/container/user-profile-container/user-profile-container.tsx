@@ -2,35 +2,11 @@ import * as React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { ProfileProperty, User } from "../../../type";
+import { FormProperties, ProfileInputProperty, User } from "../../../type";
 
 import UserProfile from "../../presentation/user-profile/user-profile";
 import ProfileInput from "../../presentation/profile-input/profile-input";
-
-//TODO импортировать из конст
-const ProfileValidation = {
-  name: /^[a-zA-Zа-яА-Я ]*$/,
-  userName: /^[a-zA-Zа-яА-Я ]*$/,
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-  street: /^[a-zA-Zа-яА-Я0-9 .,]*$/,
-  city: /^[a-zA-Zа-яА-Я .,]*$/,
-  zipcode: /^[a-zA-Z0-9-]*$/,
-  phone: /^(((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})$/,
-  website: /[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/gi,
-  comment: /^[a-zA-Zа-яА-Я0-9 .,%&';=?$\x22]*$/,
-};
-
-const ProfilePropertiesLabels = {
-  name: 'Name',
-  userName: 'User name',
-  email: 'E-mail',
-  street: 'Street',
-  city: 'City',
-  zipcode: 'Zip code',
-  phone: 'Phone',
-  website: 'Website',
-  comment: 'Comment',
-};
+import { ProfilePropertiesLabels, ProfileValidation } from "../../../const";
 
 interface InputDataState {
   [key: string]: {value: string, isValid: boolean}
@@ -52,28 +28,43 @@ const UserProfileContainer  = ():JSX.Element => {
     comment: {value: '', isValid: true},
   });
 
-
   const enableEditing = (): void => {
     setEditing(true)
-  }
+  };
 
-  const onInputChange = (name: keyof typeof ProfilePropertiesLabels, value: string, isRequired: boolean): void => {
+  const onInputChange = (name: keyof FormProperties, value: string, isRequired: boolean): void => {
     let isValid = ProfileValidation[name].test(value);
     if (isRequired && value === '') {
       isValid = false;
     }
     const newState = Object.assign({}, inputData, {[name]: {value: value, isValid: isValid}});
     setInputData(newState);
-  }
+  };
 
-  let ProfileProperties: ProfileProperty[];
+  const handleFormSubmit = (evt: React.FormEvent): void => {
+    evt.preventDefault();
+    let isFormValid = true;
+    let formData: FormProperties | {} = {};
+    Object.keys(inputData).forEach((key: keyof FormProperties) => {      
+      formData = Object.assign({}, formData, {[key]: inputData[key].value});
+      if (!inputData[key].isValid) {
+        isFormValid = false;
+      }
+    })
+    if (!isFormValid) {
+      return;
+    }
+    console.log(JSON.stringify(formData));
+  };
+
+  let ProfileProperties: ProfileInputProperty[];
   Object.keys(ProfilePropertiesLabels)
     .forEach(property => {
       const isRequired = property === 'comment' ? false : true;
       const newProperty = {
         id: property,
         name: property,
-        label: ProfilePropertiesLabels[property as keyof typeof ProfilePropertiesLabels],
+        label: ProfilePropertiesLabels[property as keyof FormProperties],
         value: inputData[property].value,
         isValid: inputData[property].isValid,
         isRequired: isRequired,
@@ -84,7 +75,7 @@ const UserProfileContainer  = ():JSX.Element => {
     });
 
   return (
-    <UserProfile isEditing={isEditing} enableEditing={enableEditing}>      
+    <UserProfile isEditing={isEditing} enableEditing={enableEditing} handleFormSubmit={handleFormSubmit}>      
         {ProfileProperties
           ? ProfileProperties.map((property, i) => {
             return <ProfileInput key={`${i}-input`}
